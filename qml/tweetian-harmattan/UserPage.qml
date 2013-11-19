@@ -16,7 +16,7 @@
     along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-import QtQuick 1.1
+import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "Services/Twitter.js" as Twitter
 import "Component"
@@ -174,7 +174,7 @@ Page {
                         }
                         font.bold: true
                         font.pixelSize: constant.fontSizeMedium
-                        font.family: theme.fontFamily
+                        font.family: Theme.fontFamily
                         color: "white"
                         style: Text.Outline
                         styleColor: "black"
@@ -189,7 +189,7 @@ Page {
                             right: parent.right; rightMargin: constant.paddingMedium
                         }
                         font.pixelSize: constant.fontSizeMedium
-                        font.family: theme.fontFamily
+                        font.family: Theme.fontFamily
                         color: "white"
                         style: Text.Outline
                         styleColor: "black"
@@ -210,7 +210,7 @@ Page {
                     elide: Text.ElideRight
                     maximumLineCount: window.orientation === Orientation.Portrait ? 5 : 4 // TODO: remove hardcoded value
                     font.pixelSize: constant.fontSizeSmall
-                    font.family: theme.fontFamily
+                    font.family: Theme.fontFamily
                     verticalAlignment: Text.AlignBottom
                     color: "white"
                     style: Text.Outline
@@ -266,7 +266,7 @@ Page {
                             anchors { left: parent.left; right: parent.right }
                             wrapMode: Text.Wrap
 
-                            font.family: theme.fontFamily
+                            font.family: Theme.fontFamily
                             font.pixelSize: constant.fontSizeMedium
                             color: listItem.enabled ? constant.colorLight : constant.colorDisabled
                             text: title
@@ -277,7 +277,7 @@ Page {
                             visible: subtitle !== ""
                             wrapMode: Text.Wrap
                             font.pixelSize: constant.fontSizeMedium
-                            font.family: theme.fontFamily
+                            font.family: Theme.fontFamily
                             color: listItem.enabled ? constant.colorMid : constant.colorDisabled
                             text: subtitle
                         }
@@ -305,15 +305,15 @@ Page {
             userInfoRepeater.append(qsTr("Tweets"), user.tweetsCount + " | " +
                                     Calculate.tweetsFrequency(user.createdAt, user.tweetsCount),
                                     "internal.pushUserPage(\"UserPageCom/UserTweetsPage.qml\")")
-            userInfoRepeater.append(qsTr("Following"), user.followingCount,
+            userInfoRepeater.append(qsTr("Following"), user.followingCount.toString(),
                                     "internal.pushUserPage(\"UserPageCom/UserFollowingPage.qml\")")
-            userInfoRepeater.append(qsTr("Followers"), user.followersCount,
+            userInfoRepeater.append(qsTr("Followers"), user.followersCount.toString(),
                                     "internal.pushUserPage(\"UserPageCom/UserFollowersPage.qml\")")
-            userInfoRepeater.append(qsTr("Favourites"), user.favouritesCount,
+            userInfoRepeater.append(qsTr("Favourites"), user.favouritesCount.toString(),
                                     "internal.pushUserPage(\"UserPageCom/UserFavouritesPage.qml\")")
             userInfoRepeater.append(qsTr("Subscribed List"), "",
                                     "internal.pushUserPage(\"UserPageCom/UserSubscribedListsPage.qml\")")
-            userInfoRepeater.append(qsTr("Listed"), user.listedCount,
+            userInfoRepeater.append(qsTr("Listed"), user.listedCount.toString(),
                                     "internal.pushUserPage(\"UserPageCom/UserListedPage.qml\")")
             isFollowing = user.isFollowing;
         }

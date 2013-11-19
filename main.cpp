@@ -16,15 +16,16 @@
     along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <QtGui/QApplication>
-#include <QtDeclarative/QDeclarativeContext>
-#include <QtDeclarative/QDeclarativeView>
-#include <QtDeclarative/qdeclarative.h>
+#include <QtWidgets/QApplication>
+#include <QQmlContext>
+#include <QQuickView>
+//#include <qdeclarative.h>
 #include <QtCore/QTranslator>
 #include <QtCore/QLocale>
 #include <QtCore/QFile>
 #include "qmlapplicationviewer.h"
-#include <QInputContext>
+#include <QtQml>
+//#include <QInputPanel>
 
 #if defined(Q_OS_SYMBIAN) || defined(Q_WS_SIMULATOR)
 #include <QtGui/QSplashScreen>
@@ -52,7 +53,7 @@ class EventFilter : public QObject
 {
 protected:
     bool eventFilter(QObject *obj, QEvent *event) {
-        QInputContext *ic = qApp->inputContext();
+        /*QPlatformInputContext *ic = qApp->inputContext();
         if (ic) {
             if (ic->focusWidget() == 0 && prevFocusWidget) {
                 QEvent closeSIPEvent(QEvent::CloseSoftwareInputPanel);
@@ -62,19 +63,19 @@ protected:
                 ic->filterEvent(&openSIPEvent);
             }
             prevFocusWidget = ic->focusWidget();
-        }
+        }*/
         return QObject::eventFilter(obj,event);
     }
-
+/*
 private:
-    QWidget *prevFocusWidget;
+    QWidget *prevFocusWidget;*/
 };
 #endif
 
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
-    QScopedPointer<QApplication> app(createApplication(argc, argv));
+    QScopedPointer<QGuiApplication> app(createApplication(argc, argv));
 
     QString lang = QLocale::system().name();
     lang.truncate(2); // ignore the country code
@@ -108,7 +109,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     splash->showMessage(QSplashScreen::tr("Loading..."), Qt::AlignHCenter | Qt::AlignBottom, Qt::white);
 #endif
 
-    QDeclarativeView view;
+    QQuickView view;
 
 #ifdef Q_OS_HARMATTAN
     new TweetianIf(app.data(), &view);
@@ -137,6 +138,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     qmlRegisterType<ImageUploader>("Uploader", 1, 0, "ImageUploader");
     qmlRegisterType<UserStream>("UserStream", 1, 0, "UserStream");
+    //view.rootContext()->setContextProperty("ImageUploader", new ImageUploader());
+    //view.rootContext()->setContextProperty("UserStream", new UserStream());
 
 #if defined(Q_OS_HARMATTAN)
     view.setSource(QUrl("qrc:/qml/tweetian-harmattan/main.qml"));

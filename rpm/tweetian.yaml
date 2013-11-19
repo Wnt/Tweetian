@@ -1,0 +1,36 @@
+Name: tweetian
+Summary: Tweetian is a feature-rich Twitter app for Symbian and Harmattan, powered by Qt/QML. It comes with a simple, native and amazing UI that will surely make you enjoy the Twitter experience on your smartphone.
+Version: 1.8
+Release: 1
+Group: Applications/Communications
+License: GPLv3
+Sources:
+- '%{name}-%{version}.tar.bz2'
+Description: |
+ Tweetian is a feature-rich Twitter app for Symbian and Harmattan, powered by Qt/QML. It comes with a simple, native and amazing UI that will surely make you enjoy the Twitter experience on your smartphone.
+Configure: none
+Builder: qtc5
+PkgConfigBR:
+- Qt5Core
+- Qt5Qml
+- Qt5Quick
+- sailfishapp
+Requires:
+- sailfishsilica-qt5
+- qt5-qtdeclarative-import-location
+- qt5-qtdeclarative-import-positioning
+- qt5-qtsvg
+- qt5-plugin-imageformat-gif
+- qt5-qtsvg-plugin-imageformat-svg
+PkgBR:
+- qt5-qtlocation-devel
+- qt5-qtpositioning-devel
+Files:
+#- /usr/share/icons/hicolor/90x90/apps
+- /usr/share/applications
+- /usr/share/tweetian
+- /usr/bin
+#- '%{_datadir}/icons/hicolor/90x90/apps/%{name}.png'
+- '%{_datadir}/applications/%{name}.desktop'
+- '%{_datadir}/%{name}/qml'
+- '%{_bindir}'

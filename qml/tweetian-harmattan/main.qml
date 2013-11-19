@@ -16,9 +16,9 @@
     along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-import QtQuick 1.1
+import QtQuick 2.0
 import Sailfish.Silica 1.0
-import QtMobility.feedback 1.1
+import QtFeedback 5.0
 
 ApplicationWindow {
     id: window
@@ -32,7 +32,7 @@ ApplicationWindow {
     Cache { id: cache }
     Constant { id: constant }
 
-    ThemeEffect { id: basicHapticEffect; effect: ThemeEffect.Basic }
+    ThemeEffect { id: basicHapticEffect; effect: ThemeEffect.Appear }
 
     QtObject {
         id: infoBanner
@@ -110,8 +110,8 @@ ApplicationWindow {
 
     Component.onCompleted: {
 
-        console.log("theme:" + theme.highlightColor)
-        //globalHighlight = theme.highlightColor.name()
+        console.log("Theme:" + Theme.highlightColor)
+        //globalHighlight = Theme.highlightColor.name()
         settings.loadSettings()
     }
 }

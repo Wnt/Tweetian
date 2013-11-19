@@ -16,7 +16,7 @@
     along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-import QtQuick 1.1
+import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "Services/Twitter.js" as Twitter
 import "Component"
@@ -43,12 +43,14 @@ Page {
 
     Component.onCompleted: {
         favouritedTweet = tweet.isFavourited
+        //TODO: Use plain QML instead of JS to show RT and Fav count
+        JS.getRTAndFavCount(tweet)
         JS.createPicThumb()
         JS.createMapThumb()
         if (networkMonitor.online) {
             JS.createYoutubeThumb()
             JS.expandTwitLonger()
-            JS.getRTAndFavCount()
+
         }
         JS.getConversationFromTimelineAndMentions()
     }
@@ -189,7 +191,7 @@ Page {
 
                         Text {
                             font.pixelSize: constant.fontSizeMedium
-                            font.family: theme.fontFamily
+                            font.family: Theme.fontFamily
                             color: constant.colorLight
                             font.bold: true
                             text: tweet.name
@@ -197,7 +199,7 @@ Page {
 
                         Text {
                             font.pixelSize: constant.fontSizeSmall
-                            font.family: theme.fontFamily
+                            font.family: Theme.fontFamily
                             color: userItem.highlighted ? constant.colorHighlighted : constant.colorMid
                             text: "@" + tweet.screenName
                         }
@@ -208,7 +210,7 @@ Page {
                     id: tweetTextText
                     anchors { left: parent.left; right: parent.right }
                     font.pixelSize: constant.fontSizeMedium
-                    font.family: theme.fontFamily
+                    font.family: Theme.fontFamily
                     color: constant.colorLight
                     textFormat: Text.RichText
                     wrapMode: Text.Wrap
@@ -228,7 +230,7 @@ Page {
                     anchors { left: parent.left; right: parent.right }
                     visible: tweet.isRetweet
                     font.pixelSize: constant.fontSizeMedium
-                    font.family: theme.fontFamily
+                    font.family: Theme.fontFamily
                     color: constant.colorMid
                     text: qsTr("Retweeted by %1").arg("@" + tweet.retweetScreenName)
                 }
@@ -258,7 +260,7 @@ Page {
                         id: timeAndSourceText
                         anchors { left: iconLoader.right; leftMargin: constant.paddingSmall; right: parent.right }
                         font.pixelSize: constant.fontSizeSmall
-                        font.family: theme.fontFamily
+                        font.family: Theme.fontFamily
                         horizontalAlignment: Text.AlignRight
                         color: constant.colorMid
                         text: tweet.source + " | " + Qt.formatDateTime(tweet.createdAt, "h:mm AP d MMM yy")
@@ -340,7 +342,7 @@ Page {
                             Text {
                                 id: rtAndFavCountText
                                 font.pixelSize: constant.fontSizeMedium
-                                font.family: theme.fontFamily
+                                font.family: Theme.fontFamily
                                 color: constant.colorLight
                                 text: model.text
                             }

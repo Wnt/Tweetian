@@ -30,13 +30,15 @@ function linkText(text, href, italic) {
 
 function parseTweet(tweetJson) {
     var tweet = {
-        id: tweetJson.id_str,
+        id: parseInt(tweetJson.id_str),
         source: tweetJson.source.replace(/<[^>]+>/ig, ""),
         createdAt: new Date(tweetJson.created_at),
         isFavourited: tweetJson.favorited,
         isRetweet: false,
         retweetScreenName: tweetJson.user.screen_name,
-        timeDiff: timeDiff(tweetJson.created_at)
+        timeDiff: timeDiff(tweetJson.created_at),
+        favorite_count: tweetJson.favorite_count,
+        retweet_count: tweetJson.retweet_count
     }
 
     var originalTweetJson = {};
@@ -58,8 +60,8 @@ function parseTweet(tweetJson) {
     tweet.mediaUrl = "";
 
     if (originalTweetJson.geo) {
-        tweet.latitude = originalTweetJson.geo.coordinates[0];
-        tweet.longitude = originalTweetJson.geo.coordinates[1];
+        tweet.latitude = originalTweetJson.geo.coordinates[0].toString();
+        tweet.longitude = originalTweetJson.geo.coordinates[1].toString();
     }
 
     if (Array.isArray(originalTweetJson.entities.media) && originalTweetJson.entities.media.length > 0) {

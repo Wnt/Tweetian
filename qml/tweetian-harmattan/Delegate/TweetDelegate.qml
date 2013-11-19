@@ -16,7 +16,7 @@
     along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-import QtQuick 1.1
+import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 AbstractDelegate {
@@ -42,7 +42,7 @@ AbstractDelegate {
             width: Math.min(parent.width, implicitWidth)
             font.pixelSize: constant.fontSizeMedium
             font.bold: true
-            font.family: theme.fontFamily
+            font.family: Theme.fontFamily
 
             color: highlighted ? constant.colorHighlighted : constant.colorLight
             elide: Text.ElideRight
@@ -53,7 +53,7 @@ AbstractDelegate {
             anchors { left: userNameText.right; right: favouriteIconLoader.left; margins: constant.paddingSmall }
             font.pixelSize: constant.fontSizeMedium
 
-            font.family: theme.fontFamily
+            font.family: Theme.fontFamily
             color: highlighted ? constant.colorHighlighted : constant.colorMid
             elide: Text.ElideRight
             text: "@" + model.screenName
@@ -81,7 +81,7 @@ AbstractDelegate {
         anchors { left: parent.left; right: parent.right }
         textFormat: Text.RichText
         font.pixelSize: constant.fontSizeMedium
-        font.family: theme.fontFamily
+        font.family: Theme.fontFamily
         wrapMode: Text.Wrap
         color: highlighted ? constant.colorHighlighted : constant.colorLight
         text: model.richText
@@ -98,7 +98,7 @@ AbstractDelegate {
             Text {
                 font.pixelSize: constant.fontSizeMedium
 
-                font.family: theme.fontFamily
+                font.family: Theme.fontFamily
                 wrapMode: Text.Wrap
                 color: highlighted ? constant.colorHighlighted : constant.colorMid
                 text: qsTr("Retweeted by %1").arg("@" + model.retweetScreenName)
@@ -111,7 +111,7 @@ AbstractDelegate {
         horizontalAlignment: Text.AlignRight
         font.pixelSize: constant.fontSizeSmall
 
-        font.family: theme.fontFamily
+        font.family: Theme.fontFamily
         color: highlighted ? constant.colorHighlighted : constant.colorMid
         elide: Text.ElideRight
         text: model.source + " | " + model.timeDiff

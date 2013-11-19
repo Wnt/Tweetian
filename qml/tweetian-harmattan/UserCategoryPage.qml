@@ -16,7 +16,7 @@
     along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-import QtQuick 1.1
+import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "Component"
 import "Services/Twitter.js" as Twitter
@@ -82,7 +82,7 @@ Page {
                 elide: Text.ElideRight
                 text: model.name
                 font.pixelSize: constant.fontSizeLarge
-                font.family: theme.fontFamily
+                font.family: Theme.fontFamily
                 color: constant.colorLight
             }
 
