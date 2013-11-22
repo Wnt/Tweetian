@@ -44,21 +44,25 @@ MEEGO_EDITION=harmattan
 simulator|contains(MEEGO_EDITION,harmattan){
     include(notifications/notifications.pri)
 
-    splash.files = splash/tweetian-splash-portrait.jpg splash/tweetian-splash-landscape.jpg
-    splash.path = /opt/tweetian/splash
+    desktopfile.files = $${TARGET}_harmattan.desktop
+    desktopfile.path = /usr/share/applications
 
-#        desktopfile.files = $${TARGET}_harmattan.desktop
-#        desktopfile.path = /usr/share/applications
 
-#        icon.files = $${TARGET}80.png
-#        icon.path = /usr/share/icons/hicolor/80x80/apps
+export (ICON)
+export (desktopfile)
 
+#INSTALLS+=icon
 #    INSTALLS += splash
 
     HEADERS += src/harmattanutils.h
     SOURCES += src/harmattanutils.cpp
 }
 
+sailfish_icon.files = tweetian80.png
+sailfish_icon.path = /usr/share/icons/hicolor/80x80/apps
+INSTALLS+=sailfish_icon
+
+INSTALLS+=icon desktopfile
 
 contains(MEEGO_EDITION,harmattan){
     QT += dbus
